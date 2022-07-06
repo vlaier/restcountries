@@ -20,7 +20,10 @@
   --fs-detail: 0.875rem;
   --bs: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-
+a {
+  color: var(--clr-very-dark-blue);
+  text-decoration: none;
+}
 /* General styles */
 html {
   scroll-behavior: smooth;
@@ -125,13 +128,17 @@ body {
   flex-wrap: wrap;
   align-items: center;
 }
-.border button {
+.border a {
   padding: 9px 28px;
   background-color: inherit;
   border: none;
   border-radius: 5px;
   box-shadow: var(--bs);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 /*GENERAL CLASS!!! */
@@ -145,10 +152,10 @@ body {
   align-items: center;
   justify-content: space-between;
   background-color: inherit;
-  gap: 16px;
 }
 /* GENERAL CLASS */
 .btn-back {
+  gap: 16px;
   background-color: inherit;
 }
 

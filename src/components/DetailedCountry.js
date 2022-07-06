@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../Context";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-function DetailedCountry({ country, setShowCountry }) {
+import { useParams, useNavigate, Link } from "react-router-dom";
+function DetailedCountry() {
+  const { allCountries } = useContext(Context);
+  const { countryName } = useParams();
   const { name, population, region, subregion, capital, flags, borders, tld } =
-    country;
+    allCountries.find((country) => country.cca3 === countryName);
+  const navigate = useNavigate();
 
   return (
     <>
       <article className="container">
         <button
-          class="btn btn-back m-bottom-50"
-          onClick={() => setShowCountry(null)}
+          className="btn btn-back m-bottom-50"
+          onClick={() => navigate(-1)}
         >
           <FaLongArrowAltLeft /> Back
         </button>
@@ -22,7 +27,7 @@ function DetailedCountry({ country, setShowCountry }) {
             <div className="detailed-country-text">
               <div className="column">
                 <p className="detailed-country--native-name">
-                  <b>Native Name:</b>{" "}
+                  <b>Native Name:</b>
                   {Object.values(name.nativeName)[0].official}
                 </p>
                 <p className="detailed-country--population">
@@ -51,9 +56,7 @@ function DetailedCountry({ country, setShowCountry }) {
                 <div className="border">
                   <strong>Border Countries: </strong>
                   {borders.map((borderCountry) => (
-                    <button onClick={() => setShowCountry(borderCountry)}>
-                      {borderCountry}
-                    </button>
+                    <Link to={`/${borderCountry}`}>{borderCountry}</Link>
                   ))}
                 </div>
               )}

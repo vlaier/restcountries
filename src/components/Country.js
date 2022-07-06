@@ -1,14 +1,10 @@
 import React from "react";
-
-function Country({ country, setShowCountry }) {
+import { Link } from "react-router-dom";
+function Country({ country }) {
   const { name, population, region, capital, flags, cca3 } = country;
+
   return (
-    <article
-      className="country-card"
-      onClick={() => {
-        setShowCountry(cca3);
-      }}
-    >
+    <Link to={`/${cca3}`} className="country-card">
       <div className="country-card--img">
         <img src={flags.png} alt={name.common} />
       </div>
@@ -28,7 +24,7 @@ function Country({ country, setShowCountry }) {
           </p>
         )}
       </div>
-    </article>
+    </Link>
   );
 }
 

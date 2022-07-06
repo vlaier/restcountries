@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../Context";
 import Country from "./Country";
-export default function Countries({ countries, setShowCountry }) {
+import SearchBar from "./SearchBar";
+export default function Countries() {
+  const { filterCountries } = useContext(Context);
+  const countries = filterCountries();
   const countryElements = countries.map((country) => {
-    return (
-      <Country
-        key={country.name.common}
-        country={country}
-        setShowCountry={setShowCountry}
-      />
-    );
+    return <Country key={country.name.common} country={country} />;
   });
-  return <div className="countries container">{countryElements}</div>;
+  return (
+    <>
+      <SearchBar />
+      <div className="countries container">{countryElements}</div>
+    </>
+  );
 }
